@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test2</title>
+</head>
+<body>
+    
+   <div class="container">
+       <div class="row justify-content-center">
+           <div class="col-xl-6">
+
+            <div v-if="!sendData">
+                <div style="margin-bottom: 20px" class="progress" >
+                    <div :style="widthProgressBar" class="progress-bar"></div>
+                </div>
+    
+                <dv-input v-for="(item, index) in info" 
+                          :name="item.name"
+                          :value="item.value"
+                          :pattern="item.pattern"
+                          :key="index"
+                          @validdata="validData(index, $event)">
+                </dv-input>
+    
+                <button style="margin-top: 20px;" 
+                        class="btn btn-success" 
+                        :disabled="processWidth < 5"
+                        @click="sendData = true">Send data</button>
+            </div>
+
+            <div style="margin-top: 30px;" v-if="sendData">
+                <table class="table table-bordered">
+                    <tr v-for="(data, index) in info">
+                            {{ data.name }}
+                        <td>
+                            {{ data.value }}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+           </div>
+       </div>
+   </div>
+
+    
+    
+</body>
+</html>
